@@ -1,5 +1,6 @@
 CFLAGS  += -Wall -O3 -I/opt/X11/include
-LFLAGS  += -L/opt/X11/lib -lX11
+LFLAGS  += -L/opt/X11/lib
+LIBS     = -lX11
 
 SRCS     = $(wildcard *.c)
 OBJS     = $(SRCS:.c=.o)
@@ -12,7 +13,7 @@ debug: CFLAGS += -g -O0
 debug: all
 
 tylock: $(OBJS)
-	$(CC) $(LFLAGS) $^ -o $@
+	$(CC) $(LFLAGS) $^ -o $@ $(LIBS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
